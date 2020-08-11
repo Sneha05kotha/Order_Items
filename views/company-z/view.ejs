@@ -1,0 +1,29 @@
+<h1 class="display-4 mt-5">Items</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ItemID</th>
+      <th>Quantity</th>
+      <th>Amount</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% jobs.forEach(function(job){ %>
+    <tr>
+      <td><%= job.id %></td>
+      <td><%= job.partid %></td>
+      <td><%= job.quantity %></td>
+      <td>
+        <form
+          action="select/<%= job.id %>/<%= job.partid %>/<%= job.quantity %>"
+          method="GET"
+        >
+          <input type="submit" value="Select" class="btn btn-primary px-3" />
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<a href="/find" class="btn btn-primary ml-2">Find Items</a>

@@ -1,0 +1,10 @@
+<h1 class="display-4 mt-5">Order</h1>
+<p class="h4 mt-2"><%= txt %></p>
+<p class="h5 mt-4 ml-2">jobName: <%= job.jobNameG19 %></p>
+<p class="h5 mt-2 ml-2">userID: <%= job.userIdG19 %></p>
+<p class="h5 mt-2 ml-2">partID: <%= job.partIdG19 %></p>
+<p class="h5 mt-2 mb-2 ml-2">qty: <%= job.qtyG19 %></p>
+<p class="h5 mt-2 mb-2 ml-2">date: <%= new Date(job.createdAt*1000) %></p>
+<p class="h5 mt-2 mb-2 ml-2">result: <%= job.resultG19 %></p>
+<a href="/view" class="btn btn-outline-primary ml-2">View Items</a>
+<a href="/find" class="btn btn-outline-primary ml-2">Find Items</a>
