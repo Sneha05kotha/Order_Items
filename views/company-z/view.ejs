@@ -3,23 +3,29 @@
   <thead>
     <tr>
       <th>ItemID</th>
-      <th>Quantity</th>
-      <th>Amount</th>
+      <th>Item Name</th>
+      <th>Price/Item</th>
+      <th>Actions</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% jobs.forEach(function(job){ %>
+    <% items.forEach(function(item){ %>
     <tr>
-      <td><%= job.id %></td>
-      <td><%= job.partid %></td>
-      <td><%= job.quantity %></td>
+      <td><%= item.item_id %></td>
+      <td><%= item.item_name %></td>
+      <td><%= item.price %></td>
       <td>
         <form
-          action="select/<%= job.id %>/<%= job.partid %>/<%= job.quantity %>"
-          method="GET"
-        >
-          <input type="submit" value="Select" class="btn btn-primary px-3" />
+          action="/orderItem/<%= item.item_id %>"
+          method="POST"
+        > 
+          <div class="form-group">
+            <input type="number" required class="form-control" id="quantity" name="item_quantity" placeholder="Enter quantity needs to be ordered.">
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Place Order" class="btn btn-primary px-3" />
+          </div>
         </form>
       </td>
     </tr>

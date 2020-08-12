@@ -150,6 +150,39 @@ module.exports = {
         return res.view('company-z/error', {errorMessage:'No such Job exist.'});
       }
     }).catch((err) => { return res.serverError(err); });
+  },
+  getItems: (req, res) => {
+    Axios.get(
+      'https://4cydjjidid.execute-api.us-east-1.amazonaws.com/Dev',
+      {headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS',
+          'Access-Control-Allow-Headers': '*'
+      }}
+    ).then(itemRes => {
+      if (itemRes.statusText === 'OK' && JSON.stringify(itemRes.data) !== '{}')  {
+        console.log('__itemRes.data__', itemRes.data);
+        res.view('company-z/view', { items: itemRes.data })
+      } else {
+        res.send({
+          success: false,
+          isError: false,
+          message: 'Some problem in getting OK response.'
+        })
+      }
+    }).catch(err => {
+      console.log('__Error in fetching all items of supplier__', err);
+    })
+  },
+  OrderItem: (req, res) => {
+    // console.log('__req.params__', req.params);
+    // console.log('__req.body__', req.body);
+    const userId = req.session.userId;
+    console.log(userId);
+    if(typeof userId === 'undefined' || userId === ''){ 
+      return res.view('login', {url: req.path});
+    }
   }
 };
 
